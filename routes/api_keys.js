@@ -5,7 +5,8 @@ module.exports =
 {   
     async get_price(req, res) {
         try {
-            var lyo_api_url = "https://infoapi.lyotrade.com/coin/pair/price/v01?symbol=" 
+            // var lyo_api_url = "https://infoapi.lyotrade.com/coin/pair/price/v01?symbol=" 
+            var lyo_api_url = "https://openapi.lyotrade.com/sapi/v1/ticker?symbol="
             var symbol = "lyo1usdt";
             lyo_api_url += symbol
             let response = await Utility.Get_Request_By_Axios(lyo_api_url,{})
@@ -41,11 +42,17 @@ module.exports =
                     let price_object = [{
                         "id":id,
                         "symbol":req.query.symbol,
-                        high: (parseFloat(rate) * parseFloat(lyo_pay_data[0].high)),
-                        low: (parseFloat(rate) * parseFloat(lyo_pay_data[0].low)), 
-                        close: (parseFloat(rate) * parseFloat(lyo_pay_data[0].close)), 
-                        open: (parseFloat(rate) * parseFloat(lyo_pay_data[0].open)), 
-                        vol: (parseFloat(rate) * parseFloat(lyo_pay_data[0].vol)), 
+                        high: (parseFloat(rate) * parseFloat(lyo_pay_data.high)),
+                        vol: (parseFloat(rate) * parseFloat(lyo_pay_data.vol)), 
+                        last: (parseFloat(rate) * parseFloat(lyo_pay_data.last)),
+                        low: (parseFloat(rate) * parseFloat(lyo_pay_data.low)), 
+                        buy: (parseFloat(rate) * parseFloat(lyo_pay_data.buy)), 
+                        sell: (parseFloat(rate) * parseFloat(lyo_pay_data.sell)), 
+                        rose: (parseFloat(rate) * parseFloat(lyo_pay_data.rose)), 
+                        time: (parseFloat(rate) * parseFloat(lyo_pay_data.time)), 
+                         
+                        open: (parseFloat(rate) * parseFloat(lyo_pay_data.open)), 
+                        
                     }]
                     
                    
