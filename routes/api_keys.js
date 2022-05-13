@@ -29,7 +29,7 @@ module.exports =
                 method: 'GET',
                 url: 'https://api.apilayer.com/exchangerates_data/convert?to='+type+'&from=USD&amount=1',
                 headers: {
-                  'apikey': '9h8ePMjjMz8JEKQbgXVdstuD6UCz6m4A'
+                  'apikey': 'wRQcpTwedoJ68iv5ibftbEmo8p1kDlq8'
                 },
                  
               };
