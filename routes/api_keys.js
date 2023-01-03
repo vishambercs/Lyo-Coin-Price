@@ -20,7 +20,8 @@ module.exports =
     async get_price(req, res) {
         try {
             var lyo_api_url = "https://openapi.lyotrade.com/sapi/v1/ticker?symbol="
-            var symbol = "lyo1usdt";
+		//var symbol = "lyo1usdt";
+            var symbol = req.query.symbol == "btceuro" ? "btcusdt"  : "lyo1usdt";
             lyo_api_url += symbol
             let response = await Utility.Get_Request_By_Axios(lyo_api_url, {})
             var lyo_pay_data = JSON.parse(response.data).data
@@ -37,13 +38,18 @@ module.exports =
             else if (req.query.symbol == "lyousd") {
                 id = 9
                 type = "USD";
+            
+	   }
+		 else if (req.query.symbol == "btceuro") {
+                id = 9
+                type = "EUR";
             }
             var d1 = new Date(); // 2014-01-20 12:30:00
            
                
             // Difference between d2 and d1 in milliseconds (50400000)
-            var msDiff =  ((d1 - d2)/60000) ;
-            if(msDiff > 60 || json_varable[0].id == 0  ){
+            var msDiff =  ((d1 - d2)/60) ;
+            if(msDiff > 600 || json_varable[0].id == 0  ){
             d2 = new Date()
             var config = {
                 method: 'GET',
